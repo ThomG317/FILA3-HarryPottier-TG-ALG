@@ -40,4 +40,33 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation(
+            "androidx.core:core-ktx:1.6.0",
+            "androidx.appcompat:appcompat:1.3.1",
+            "com.google.android.material:material:1.4.0",
+            "androidx.constraintlayout:constraintlayout:2.1.1",
+            "junit:junit:4.+",
+            "androidx.test.ext:junit:1.1.3",
+            "androidx.test.espresso:espresso-core:3.4.0",
+            "com.squareup.retrofit2:retrofit:2.9.0",
+            "com.squareup.retrofit2:converter-gson:2.9.0",
+            "com.squareup.picasso:picasso:2.8",
+            // Java language implementation
+            "androidx.navigation:navigation-fragment:2.3.5",
+            "androidx.navigation:navigation-ui:2.3.5",
+
+            // Kotlin
+            "androidx.navigation:navigation-fragment-ktx:2.3.5",
+            "androidx.navigation:navigation-ui-ktx:2.3.5",
+
+            // Feature module Support
+            "androidx.navigation:navigation-dynamic-features-fragment:2.3.5",
+
+            // Testing Navigation
+            "androidx.navigation:navigation-testing:2.3.5",
+
+            // Jetpack Compose Integration
+            "androidx.navigation:navigation-compose:2.4.0-alpha10",
+            "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5",
+    )
 }
