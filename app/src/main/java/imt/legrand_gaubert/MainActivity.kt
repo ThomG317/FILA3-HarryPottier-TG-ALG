@@ -2,6 +2,7 @@ package imt.legrand_gaubert
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -17,32 +18,16 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+class MainActivity : AppCompatActivity(), ListBookActivity.Listener {
+    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        super.onCreate(savedInstanceState, persistentState);
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        // api setup
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://henri-potier.techx.fr/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val api = retrofit.create(Api::class.java)
-        val recyclerView = findViewById<RecyclerView>(R.id.rvBooks)
-        recyclerView.layoutManager = GridLayoutManager(this, 2)
-
-        api.getBooks().enqueue(object : Callback<Array<Book>> {
-            override fun onResponse(call: Call<Array<Book>>, response: Response<Array<Book>>) {
-                val books = response.body()?: emptyArray()
-                val adapter = BookAdapter(books)
-                recyclerView.adapter = adapter
-            }
-            override fun onFailure(call: Call<Array<Book>>, t: Throwable) {
-            }
-        })
-
+        setContentView(R.layout.list_book_activity);
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.list_book_activity, ListBookActivity(), ListBookActivity::class.java.name)
+            .addToBackStack(ListBookActivity::class.java.name)
+            .commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -57,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
-            else -> super.onOptionsItemSelected(item)
+            else -> super<AppCompatActivity>.onOptionsItemSelected(item)
         }
     }
 

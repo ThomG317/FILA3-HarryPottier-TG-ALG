@@ -20,7 +20,7 @@
             android:name=".BookDetails"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ListBookActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
