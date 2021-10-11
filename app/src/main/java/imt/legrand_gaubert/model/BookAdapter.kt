@@ -3,6 +3,7 @@ package imt.legrand_gaubert.model
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import imt.legrand_gaubert.R
 
 class BookAdapter(private val dataSet: Array<Book>) :
@@ -22,7 +23,9 @@ class BookAdapter(private val dataSet: Array<Book>) :
 
         val book = dataSet[position]
 
+        bookHolder.book = book
         bookHolder.textView.text = book.title
+        Picasso.get().load(book.cover).into(bookHolder.imageView)
     }
 
     // Return the size of your dataset (invoked by the layout manager)

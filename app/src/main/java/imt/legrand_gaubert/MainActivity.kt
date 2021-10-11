@@ -1,9 +1,8 @@
 package imt.legrand_gaubert
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import imt.legrand_gaubert.api.Api
 import imt.legrand_gaubert.model.Book
@@ -13,6 +12,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         val api = retrofit.create(Api::class.java)
         val recyclerView = findViewById<RecyclerView>(R.id.rvBooks)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = GridLayoutManager(this, 2)
 
         api.getBooks().enqueue(object : Callback<Array<Book>> {
             override fun onResponse(call: Call<Array<Book>>, response: Response<Array<Book>>) {
