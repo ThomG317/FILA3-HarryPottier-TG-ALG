@@ -25,10 +25,7 @@ class BookHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListen
 
     override fun onClick(v: View) {
         val intent = Intent(context, BookDetails::class.java)
-        intent.putExtra("BOOK_TITLE", book.title)
-        intent.putExtra("BOOK_PRICE", book.price)
-        intent.putExtra("BOOK_COVER", book.cover)
-        intent.putExtra("BOOK_SYNOPSIS", book.synopsis)
+        intent.putExtra("BOOK", book)
         context.startActivity(intent)
     }
 }
