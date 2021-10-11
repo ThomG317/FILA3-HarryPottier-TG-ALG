@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Array<Book>>, response: Response<Array<Book>>) {
                 val books = response.body()?: emptyArray()
                 val adapter = BookAdapter(books)
+                recyclerView.adapter = adapter
             }
             override fun onFailure(call: Call<Array<Book>>, t: Throwable) {
             }

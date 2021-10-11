@@ -1,43 +1,28 @@
 package imt.legrand_gaubert.model
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import imt.legrand_gaubert.R
 
 class BookAdapter(private val dataSet: Array<Book>) :
-    RecyclerView.Adapter<BookAdapter.ViewHolder>() {
-
-    /**
-     * Provide a reference to the type of views that you are using
-     * (custom ViewHolder).
-     */
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView
-
-        init {
-            // Define click listener for the ViewHolder's View.
-            textView = view.findViewById(R.id.item_title)
-        }
-    }
+    RecyclerView.Adapter<BookHolder>() {
 
     // Create new views (invoked by the layout manager)
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookHolder {
         // Create a new view, which defines the UI of the list item
-        val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.book_item, viewGroup, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.book_item, parent, false)
 
-        return ViewHolder(view)
+        return BookHolder(view)
     }
 
     // Replace the contents of a view (invoked by the layout manager)
-    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(bookHolder: BookHolder, position: Int) {
 
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
-        viewHolder.textView.text = dataSet[position].title
+        val book = dataSet[position]
+
+        bookHolder.textView.text = book.title
     }
 
     // Return the size of your dataset (invoked by the layout manager)
