@@ -7,50 +7,67 @@
     android:layout_margin="@dimen/m_16"
     tools:context=".BookDetails">
 
-    <ImageView
-        android:id="@+id/details_book_cover"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        tools:background="@color/colorAccent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:mipmap/sym_def_app_icon"
-        android:contentDescription="TODO" />
-
-    <TextView
-        android:id="@+id/details_book_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/m_32"
-        android:textSize="@dimen/text_very_big"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/details_book_cover"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:text="Nom du livre" />
-    <TextView
-        android:id="@+id/details_price"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/text_big"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/details_book_title"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:text="30 €" />
-
-    <TextView
-        android:id="@+id/details_synopsis"
-        android:layout_width="match_parent"
+    <ScrollView
+        android:id="@+id/SCROLLER_ID"
+        android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:text="Summary"
-        android:textSize="@dimen/text_default"
-        app:layout_constraintBottom_toTopOf="@id/details_button"
+        android:scrollbars="vertical"
+        android:fillViewport="true"
+        android:layout_marginBottom="@dimen/m_32"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/details_price" />
+        app:layout_constraintBottom_toTopOf="@id/details_button">
 
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".BookDetails">
+
+            <ImageView
+                android:id="@+id/details_book_cover"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                tools:background="@color/colorAccent"
+                android:layout_marginTop="@dimen/m_16"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@android:mipmap/sym_def_app_icon"
+                android:contentDescription="TODO" />
+
+            <TextView
+                android:id="@+id/details_book_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/m_32"
+                android:textSize="@dimen/text_very_big"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/details_book_cover"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="Nom du livre" />
+            <TextView
+                android:id="@+id/details_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_big"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/details_book_title"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="30 €" />
+            <TextView
+                android:id="@+id/details_synopsis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Summary"
+                android:textSize="@dimen/text_default"
+                android:scrollbars="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/details_price"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="@dimen/m_16"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
     <Button
         android:layout_width="0dp"
         android:layout_height="wrap_content"
