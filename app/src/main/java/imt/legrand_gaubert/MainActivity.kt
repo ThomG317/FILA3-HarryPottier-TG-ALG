@@ -3,30 +3,22 @@ package imt.legrand_gaubert
 import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import imt.legrand_gaubert.api.Api
 import imt.legrand_gaubert.model.Book
-import imt.legrand_gaubert.model.BookAdapter
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import imt.legrand_gaubert.model.BookHolder
 
 
-class MainActivity : AppCompatActivity(), ListBookActivity.Listener {
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState);
+class MainActivity : AppCompatActivity(), BookHolder.Listener {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.main_activity)
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        setContentView(R.layout.list_book_activity);
         supportFragmentManager.beginTransaction()
-            .replace(R.id.list_book_activity, ListBookActivity(), ListBookActivity::class.java.name)
-            .addToBackStack(ListBookActivity::class.java.name)
+            .replace(R.id.fragment, ListBook(), ListBook::class.java.name)
             .commit()
     }
 
@@ -44,6 +36,17 @@ class MainActivity : AppCompatActivity(), ListBookActivity.Listener {
             }
             else -> super<AppCompatActivity>.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onBookSelected(item: Book) {
+        val fragment = BookDetails()
+        val args =  Bundle()
+        args.putParcelable("BOOK", item)
+        fragment.arguments = args
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment, fragment, BookDetails::class.java.name)
+            .addToBackStack(BookDetails::class.java.name)
+            .commit()
     }
 
 }

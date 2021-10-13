@@ -17,10 +17,7 @@
             android:name=".ShopCart"
             android:exported="true" />
         <activity
-            android:name=".BookDetails"
-            android:exported="true" />
-        <activity
-            android:name=".ListBookActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

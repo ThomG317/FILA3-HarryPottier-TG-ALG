@@ -3,16 +3,17 @@ package imt.legrand_gaubert.model
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import imt.legrand_gaubert.BookDetails
+import imt.legrand_gaubert.ListBook
 import imt.legrand_gaubert.R
 
 class BookHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
+    lateinit var listener: Listener
     private val context: Context = view.context
     lateinit var book: Book
 
@@ -20,12 +21,19 @@ class BookHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListen
     val imageView: ImageView    = view.findViewById(R.id.item_image)
 
     init {
+        when (context) {
+            is Listener -> listener = context
+            else -> throw Exception("Not a listener of Listbook Activity")
+        }
         view.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
-        val intent = Intent(context, BookDetails::class.java)
-        intent.putExtra("BOOK", book)
-        context.startActivity(intent)
+        listener.onBookSelected(book)
+    }
+
+
+    interface Listener {
+        fun onBookSelected(item: Book)
     }
 }
