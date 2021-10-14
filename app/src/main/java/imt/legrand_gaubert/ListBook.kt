@@ -28,16 +28,12 @@ class ListBook : Fragment() {
         return inflater.inflate(R.layout.list_book, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onResume() {
+        super.onResume()
         val recyclerView = this.activity?.findViewById<RecyclerView>(R.id.rvBooks)
         recyclerView?.layoutManager = GridLayoutManager(this.activity, 2)
         adapter = BookAdapter(emptyArray())
         recyclerView?.adapter = adapter
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
 
         // api setup
         val retrofit = Retrofit.Builder()

@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity(), BookHolder.Listener {
         setSupportActionBar(findViewById(R.id.toolbar))
 
         supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
             .replace(R.id.fragment, ListBook(), ListBook::class.java.name)
             .commit()
     }
@@ -44,6 +45,7 @@ class MainActivity : AppCompatActivity(), BookHolder.Listener {
         args.putParcelable("BOOK", item)
         fragment.arguments = args
         supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.fragment_open_enter, R.anim.fragment_close_exit)
             .replace(R.id.fragment, fragment, BookDetails::class.java.name)
             .addToBackStack(BookDetails::class.java.name)
             .commit()
